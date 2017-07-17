@@ -286,3 +286,11 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+
+#Qt
+*.user
+
+#vs
+*.vcxproj
+*.vcxproj.filters
