@@ -101,6 +101,22 @@ void ImageLib::CImageReadQueue::releaseTask(const QString& taskID)
 	}
 }
 
+bool ImageLib::CImageReadQueue::isAllFinished() const
+{
+	bool finished = true;
+
+	Q_FOREACH(stLoader loader, m_loaders)
+	{
+		if (Loading == loader.state)
+		{
+			finished = false;
+			break;
+		}
+	}
+
+	return finished;
+}
+
 void ImageLib::CImageReadQueue::startNextTask()
 {
 	if (m_loaders.isEmpty())
@@ -138,6 +154,7 @@ void ImageLib::CImageReadQueue::startNextTask()
 			load.reader = createImageLoader(load.param);
 			load.state = Loading;
 			startCount--;
+			load.reader->start();
 		}
 	}
 }

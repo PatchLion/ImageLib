@@ -46,8 +46,14 @@ namespace ImageLib
 		~CImageReadQueue();
 
 	public:
+		//
 		QString addLoadTask(const ImageLib::stReadParam& param);
+		
+		//
 		void releaseTask(const QString& taskID);
+
+		//是否所有任务完成
+		bool isAllFinished() const;
 
 	private:
 		//尝试生成一个加载任务
